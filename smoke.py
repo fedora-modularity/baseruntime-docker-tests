@@ -23,6 +23,7 @@ class BaseRuntimeSmokeTest(module_framework.AvocadoTest):
         super(self.__class__, self).setUp()
         self.compiler_resource_dir = brtconfig.get_compiler_test_dir(self)
         self.compiler_test_dir = None
+        self.start()
 
     def _check_cmd_result(self, cmd, return_code, cmd_output, expect_pass=True):
         """

@@ -15,10 +15,11 @@ import cleanup
 import brtconfig
 
 
-class BaseRuntimeSetupDocker(Test, module_framework.CommonFunctions):
+class BaseRuntimeSetupDocker(Test):
 
     def setUp(self):
 
+        self.mtf = module_framework.CommonFunctions()
         self.mockcfg = brtconfig.get_mockcfg(self)
         self.br_image_name = brtconfig.get_docker_image_name(self)
 
@@ -55,7 +56,7 @@ class BaseRuntimeSetupDocker(Test, module_framework.CommonFunctions):
             self.error("mock configuration file %s does not define chroot_setup_cmd" % mockcfg)
 
         #Need to get all packages that need to be installed
-        mod_yaml = self.getModulemdYamlconfig()
+        mod_yaml = self.mtf.getModulemdYamlconfig()
         if not mod_yaml:
             self.error("Could not read modulemd Yaml file")
 
